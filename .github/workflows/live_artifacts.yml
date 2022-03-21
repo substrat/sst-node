@@ -31,7 +31,7 @@ jobs:
       - name: Fetch Deps
         run: ci/actions/osx/install_deps.sh
       - name: Build Artifact
-        run: TRAVIS_TAG=${TAG} ci/build-deploy.sh "/tmp/qt/lib/cmake/Qt5";
+        run: CI_TAG=${TAG} ci/build-deploy.sh "/tmp/qt/lib/cmake/Qt5";
       - name: Deploy Artifact
         run: ci/actions/deploy.sh
         env:
@@ -56,7 +56,7 @@ jobs:
           COMPILER: gcc
         run: ci/actions/linux/install_deps.sh
       - name: Build Artifact
-        run: docker run -v ${GITHUB_WORKSPACE}:/workspace nanocurrency/nano-env:gcc /bin/bash -c "cd /workspace && TRAVIS_TAG=${TAG} ci/build-deploy.sh /usr/lib/x86_64-linux-gnu/cmake/Qt5"
+        run: docker run -v ${GITHUB_WORKSPACE}:/workspace nanocurrency/nano-env:gcc /bin/bash -c "cd /workspace && CI_TAG=${TAG} ci/build-deploy.sh /usr/lib/x86_64-linux-gnu/cmake/Qt5"
       - name: Deploy Artifact
         run: ci/actions/deploy.sh
         env:
@@ -81,7 +81,7 @@ jobs:
           COMPILER: gcc
         run: ci/actions/linux/install_deps.sh
       - name: Deploy Docker (nanocurrency/nano)
-        run: TRAVIS_TAG=${TAG} ci/actions/linux/deploy-docker.sh
+        run: CI_TAG=${TAG} ci/actions/linux/deploy-docker.sh
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Login to ghcr.io
