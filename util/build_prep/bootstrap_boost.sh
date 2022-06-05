@@ -7,7 +7,7 @@ useLibCXX='false'
 keepArchive='false'
 LINK_TYPE=('link=static')
 debugLevel=0
-buildThreads=1
+buildThreads=40
 buildCArgs=()
 buildCXXArgs=()
 buildLDArgs=()
